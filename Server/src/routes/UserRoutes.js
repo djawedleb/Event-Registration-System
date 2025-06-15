@@ -1,12 +1,13 @@
 import express from 'express';
 import {registerUser, loginUser, getUsers, getUserById, updateUser, deleteUser} from '../controllers/UserController.js';
-const router = express.Router();
+import {authenticateToken, validateRegistration} from '../middleware/authMiddleware.js';
+const UserRoutes = express.Router();
 
-router.post('/Register', registerUser);
-router.post('/Login', loginUser);
-router.get('/Users', getUsers);
-router.get('/Users/:id', getUserById);
-router.put('/Users/:id', updateUser);
-router.delete('/Users/:id', deleteUser);
+UserRoutes.post('/Register', validateRegistration, registerUser);
+UserRoutes.post('/Login', loginUser);
+UserRoutes.get('/Users', authenticateToken, getUsers);
+UserRoutes.get('/Users/:id', authenticateToken, getUserById);
+UserRoutes.put('/Users/:id', authenticateToken, updateUser);
+UserRoutes.delete('/Users/:id', authenticateToken, deleteUser);
 
-export default router;
+export default UserRoutes;
