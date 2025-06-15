@@ -1,0 +1,219 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .home-container {
+    min-height: 100vh;
+    min-width: 100vw;
+    /* Soft blue gradient background */
+    background: linear-gradient(135deg, #e0e7ff 0%, #f7fafc 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  
+  .welcome-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #222b45;
+  }
+  
+  .auth-section {
+    width: 100%;
+    max-width: 370px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 2rem 1.5rem;
+  }
+  @media (max-width: 600px) {
+    .auth-section {
+      padding: 1.2rem 0.5rem;
+      max-width: 100%;
+    }
+    .welcome-section h1 {
+      font-size: 1.4rem;
+    }
+  }
+  .auth-form-container {
+    width: 100%;
+  }
+  
+  .auth-tabs {
+    display: flex;
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-tabs button {
+    flex: 1;
+    padding: 0.7rem 0;
+    border: none;
+    background: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .auth-tabs button.active {
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+  }
+  
+  .tab-icon {
+    font-size: 1.2rem !important;
+    transition: transform 0.2s ease;
+  }
+  
+  .auth-tabs button:hover .tab-icon {
+    transform: translateY(-1px);
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .form-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.98rem;
+    color: #444;
+    line-height: 1;
+  }
+  
+  .field-icon {
+    font-size: 1.1rem !important;
+    color: #666;
+    display: inline-flex;
+    align-items: center;
+    height: 1.1rem;
+  }
+  
+  .form-group input {
+    width: calc(100% - 2px);
+    padding: 0.4rem;
+    padding-left: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    position: relative;
+    line-height: 1.5;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+  }
+  
+  .form-group input::placeholder {
+    color: #999;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.7rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .submit-icon {
+    font-size: 1.2rem !important;
+    transition: transform 0.2s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background: #0056b3;
+  }
+  
+  button[type="submit"]:hover .submit-icon {
+    transform: translateX(2px);
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+    font-size: 0.98rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #fff3f3;
+    border-radius: 4px;
+    border: 1px solid #ffcdd2;
+  }
+  
+  @media (max-width: 600px) {
+    .auth-tabs button {
+      padding: 0.6rem 0;
+      font-size: 1rem;
+    }
+    
+    .tab-icon {
+      font-size: 1.1rem !important;
+    }
+    
+    .form-group label {
+      font-size: 0.95rem;
+    }
+    
+    .field-icon {
+      font-size: 1rem !important;
+    }
+    
+    button[type="submit"] {
+      padding: 0.6rem;
+      font-size: 1rem;
+    }
+    
+    .submit-icon {
+      font-size: 1.1rem !important;
+    }
+  }
+
+  .input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .input-wrapper .field-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 1.2rem !important;
+    pointer-events: none;
+  }
+
+  .input-wrapper input {
+    width: 100%;
+    padding: 0.4rem 0.75rem 0.4rem 2.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    line-height: 1.5;
+  }

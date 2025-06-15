@@ -30,6 +30,12 @@ export const registerUser = async (req, res) => {
             { expiresIn: '24h' }
         );
 
+        const userWithoutPassword = {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            createdAt: user.createdAt
+        };
 
         res.status(201).json({
             message: 'User registered successfully',
@@ -60,7 +66,7 @@ export const loginUser = async (req, res) => {
         // Create token
         const token = jwt.sign(
             { id: user._id, email: user.email },
-            process.env.JWT_SECRET,
+             process.env.JWT_SECRET,
             { expiresIn: '24h' }
         );
 
@@ -78,6 +84,7 @@ export const loginUser = async (req, res) => {
             token
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Error logging in', error: error.message });
     }
 }
@@ -117,3 +124,93 @@ export const deleteUser = async (req, res) => {
     }
     res.status(200).json({message: 'User deleted successfully', user});
 }
+
+export const getProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching profile', error: error.message });
+    }
+};
+
+export const updateProfile = async (req, res) => {
+    try {
+        const { name, email, currentPassword, newPassword } = req.body;
+        const user = await User.findById(req.user.id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Verify current password if provided
+        if (currentPassword) {
+            const isMatch = await bcrypt.compare(currentPassword, user.password);
+            if (!isMatch) {
+                return res.status(401).json({ message: 'Current password is incorrect' });
+            }
+        } else {
+            return res.status(400).json({ message: 'Current password is required for updates' });
+        }
+
+        // Check if email is being changed and if it's already taken
+        if (email !== user.email) {
+            const emailExists = await User.findOne({ email });
+            if (emailExists) {
+                return res.status(400).json({ message: 'Email already in use' });
+            }
+        }
+
+        // Update user fields
+        user.name = name || user.name;
+        user.email = email || user.email;
+
+        // Update password if provided
+        if (newPassword) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(newPassword, salt);
+        }
+
+        await user.save();
+
+        // Return updated user without password
+        const updatedUser = {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt
+        };
+
+        res.status(200).json({
+            message: 'Profile updated successfully',
+            user: updatedUser
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating profile', error: error.message });
+    }
+};
+
+export const deleteProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Delete user's registrations first (if any)
+        // Note: You might want to add this if you have a Registration model
+        // await Registration.deleteMany({ userId: user._id });
+
+        // Delete the user
+        await User.findByIdAndDelete(req.user.id);
+
+        res.status(200).json({ message: 'Account deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting account', error: error.message });
+    }
+};

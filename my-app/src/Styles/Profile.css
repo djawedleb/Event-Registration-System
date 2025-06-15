@@ -1,0 +1,188 @@
+.profile-container {
+    min-height: 100vh;
+    background: #f7f9fb;
+}
+
+.profile-content {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.profile-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.profile-tabs button {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #666;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.profile-tabs button:hover {
+    background: #f0f4fa;
+    color: #007bff;
+}
+
+.profile-tabs button.active {
+    background: #007bff;
+    color: white;
+}
+
+.profile-info {
+    padding: 1rem 0;
+}
+
+.profile-info h2 {
+    color: #222;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.info-group {
+    margin-bottom: 1.2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.info-group label {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.info-group p {
+    color: #222;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.update-form {
+    padding: 1rem 0;
+}
+
+.update-form h2 {
+    color: #222;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.update-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.update-btn:hover {
+    background: #0056b3;
+}
+
+.delete-account {
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.delete-account h2 {
+    color: #dc3545;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.delete-account p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.error-message {
+    background: #fff3f3;
+    color: #dc3545;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid #ffcdd2;
+}
+
+.success-message {
+    background: #f0fff4;
+    color: #28a745;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid #c3e6cb;
+}
+
+@media (max-width: 768px) {
+    .profile-content {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .profile-tabs {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .profile-tabs button {
+        width: 100%;
+    }
+} 
