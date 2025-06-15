@@ -4,41 +4,90 @@ body, html {
     padding: 0;
   }
   
-  .home-container {
+  .home-bg {
     min-height: 100vh;
     min-width: 100vw;
-    /* Soft blue gradient background */
-    background: linear-gradient(135deg, #e0e7ff 0%, #f7fafc 100%);
+    background: linear-gradient(120deg, #e0e7ff 0%, #f7fafc 100%);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1rem;
+  }
+  
+  .home-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    padding: 2.5rem 1.5rem;
+    gap: 3.5rem;
   }
   
   .welcome-section {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #222b45;
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2.5rem 2rem 2.5rem 0;
+  }
+  
+  .welcome-icon {
+    color: #007bff;
+    font-size: 3.2rem !important;
+    margin-bottom: 1.2rem;
+  }
+  
+  .welcome-title {
+    font-size: 2.7rem;
+    font-weight: 800;
+    color: #1a237e;
+    margin-bottom: 1.1rem;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+  }
+  
+  .welcome-desc {
+    font-size: 1.25rem;
+    color: #374151;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
   }
   
   .auth-section {
+    flex: 1;
     width: 100%;
     max-width: 370px;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.07);
     padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  @media (max-width: 600px) {
+  
+  @media (max-width: 900px) {
+    .home-content {
+      flex-direction: column;
+      gap: 2.2rem;
+      padding: 2rem 0.5rem;
+    }
+    .welcome-section {
+      align-items: center;
+      padding: 1.5rem 0 0.5rem 0;
+      text-align: center;
+    }
     .auth-section {
-      padding: 1.2rem 0.5rem;
       max-width: 100%;
+      padding: 1.5rem 0.5rem;
     }
-    .welcome-section h1 {
-      font-size: 1.4rem;
+    .welcome-title {
+      font-size: 2rem;
     }
   }
+  
   .auth-form-container {
     width: 100%;
   }
@@ -216,4 +265,26 @@ body, html {
     font-size: 0.95rem;
     box-sizing: border-box;
     line-height: 1.5;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 18px;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    transition: box-shadow 0.2s;
+  }
+  .glass-card:hover {
+    box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.16);
+  }
+
+  .welcome-subtitle {
+    font-size: 1.35rem;
+    color: #3b4cca;
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+    margin-top: -0.5rem;
+    letter-spacing: 0.2px;
   }
