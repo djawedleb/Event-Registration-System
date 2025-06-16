@@ -14,6 +14,7 @@ const EventCard = ({ event, onRegister }) => {
     const [isRegistered, setIsRegistered] = useState(false);
     const [registrationId, setRegistrationId] = useState(null);
     const [open, setOpen] = useState(false);
+    const SERVER_URL = 'http://localhost:5000'; // Add server URL constant
 
     useEffect(() => {
         checkRegistrationStatus();
@@ -72,7 +73,15 @@ const EventCard = ({ event, onRegister }) => {
 
     return (
         <div className="event-card">
-            <img src={event.image} alt={event.name} className="event-image" />
+            <img 
+                src={event.image ? `${SERVER_URL}${event.image}` : '/default-event.jpg'} 
+                alt={event.name} 
+                className="event-image"
+                onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/default-event.jpg';
+                }}
+            />
             <div className="event-details">
                 <h3>{event.name}</h3>
                 <p>{event.description}</p>
@@ -124,9 +133,13 @@ const EventCard = ({ event, onRegister }) => {
                 <Divider />
                 <DialogContent sx={{ mt: 2, mb: 1 }}>
                     <img 
-                        src={event.image} 
+                        src={event.image ? `${SERVER_URL}${event.image}` : '/default-event.jpg'} 
                         alt={event.name} 
-                        style={{ width: '100%', borderRadius: 16, marginBottom: 20, boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }} 
+                        style={{ width: '100%', borderRadius: 16, marginBottom: 20, boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/default-event.jpg';
+                        }}
                     />
                     <div style={{ display: 'grid', rowGap: 12, fontSize: '1.08rem', color: '#222' }}>
                         <div><strong>Description:</strong> {event.description}</div>

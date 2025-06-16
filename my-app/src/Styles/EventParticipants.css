@@ -1,0 +1,176 @@
+.participants-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f4f7fb 0%, #e0e7ff 100%);
+    padding-bottom: 40px;
+}
+
+.participants-container {
+    max-width: 1000px;
+    margin: 2.5rem auto 0;
+    padding: 0 1rem;
+}
+
+.participants-header {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #1976d2;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+}
+
+.back-button:hover {
+    color: #1565c0;
+}
+
+.participants-header h1 {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    color: #1a237e;
+    margin: 1rem 0 0.5rem;
+    font-size: 2rem;
+}
+
+.event-title {
+    color: #455a64;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.participants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.participant-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.participant-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.participant-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.participant-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a237e;
+}
+
+.participant-email {
+    color: #455a64;
+    font-size: 0.95rem;
+}
+
+.registration-date {
+    color: #78909c;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.no-participants {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-top: 2rem;
+}
+
+.no-participants-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.no-participants p {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f4f7fb 0%, #e0e7ff 100%);
+}
+
+.loading-spinner {
+    color: #1976d2;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.error-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.error-message {
+    color: #d32f2f;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.retry-button {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.retry-button:hover {
+    background: #1565c0;
+}
+
+@media (max-width: 600px) {
+    .participants-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .participants-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .event-title {
+        font-size: 1.1rem;
+    }
+
+    .participant-card {
+        padding: 1.2rem;
+    }
+} 

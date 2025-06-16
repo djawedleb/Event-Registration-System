@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 export const registerUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, role } = req.body;
 
         // Check if user already exists
         const existingUser = await User.findOne({ email });
@@ -20,12 +20,13 @@ export const registerUser = async (req, res) => {
         const user = await User.create({
             name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            role: role || 'visitor' // Use provided role or default to visitor
         });
 
         // Create token
         const token = jwt.sign(
-            { id: user._id, email: user.email },
+            { id: user._id, email: user.email, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: '24h' }
         );
@@ -34,6 +35,7 @@ export const registerUser = async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            role: user.role,
             createdAt: user.createdAt
         };
 
@@ -43,6 +45,7 @@ export const registerUser = async (req, res) => {
             token
         });
     } catch (error) {
+        console.error('Registration error:', error);
         res.status(500).json({ message: 'Error registering user', error: error.message });
     }
 }
@@ -65,8 +68,8 @@ export const loginUser = async (req, res) => {
 
         // Create token
         const token = jwt.sign(
-            { id: user._id, email: user.email },
-             process.env.JWT_SECRET,
+            { id: user._id, email: user.email, role: user.role },
+            process.env.JWT_SECRET,
             { expiresIn: '24h' }
         );
 
@@ -75,6 +78,7 @@ export const loginUser = async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            role: user.role,
             createdAt: user.createdAt
         };
 
@@ -84,7 +88,7 @@ export const loginUser = async (req, res) => {
             token
         });
     } catch (error) {
-        console.log(error);
+        console.error('Login error:', error);
         res.status(500).json({ message: 'Error logging in', error: error.message });
     }
 }

@@ -8,6 +8,7 @@ const MyRegistrations = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [cancelingId, setCancelingId] = useState(null);
+  const SERVER_URL = 'http://localhost:5000';
 
   useEffect(() => {
     fetchRegistrations();
@@ -62,8 +63,12 @@ const MyRegistrations = () => {
               <div className="my-registration-card" key={reg._id}>
                 <img
                   className="my-registration-image"
-                  src={reg.eventId?.image || '/default-event.jpg'}
+                  src={reg.eventId?.image ? `${SERVER_URL}${reg.eventId.image}` : '/default-event.jpg'}
                   alt={reg.eventId?.name}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/default-event.jpg';
+                  }}
                 />
                 <div className="my-registration-content">
                   <div>

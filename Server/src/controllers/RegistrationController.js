@@ -40,7 +40,7 @@ export const getRegistrations = async (req, res) => {
         const userId = req.user.id; // Get user ID from authenticated request
         const registrations = await Registration.find({ userId })
             .populate('userId', 'name email')
-            .populate('eventId', 'name date time location');
+            .populate('eventId', 'name date time location description image price');
         
         res.status(200).json({
             message: 'Registrations fetched successfully',

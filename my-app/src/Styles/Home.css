@@ -288,3 +288,112 @@ body, html {
     margin-top: -0.5rem;
     letter-spacing: 0.2px;
   }
+
+  .role-selection {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 0.5rem;
+  }
+
+  .role-option {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .role-option:hover {
+    border-color: #007bff;
+    background: #f8f9ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,123,255,0.08);
+  }
+
+  .role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .role-option .radio-custom {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .role-option:hover .radio-custom {
+    border-color: #007bff;
+  }
+
+  .role-option input[type="radio"]:checked + .radio-custom {
+    border-color: #007bff;
+    background: #fff;
+  }
+
+  .role-option input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #007bff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: radioPop 0.2s ease;
+  }
+
+  .role-option .role-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .role-option .role-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.2s ease;
+  }
+
+  .role-option .role-description {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.3;
+  }
+
+  .role-option input[type="radio"]:checked ~ .role-content .role-title {
+    color: #007bff;
+  }
+
+  .role-option:hover .role-title {
+    color: #007bff;
+  }
+
+  @keyframes radioPop {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+  }

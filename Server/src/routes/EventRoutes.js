@@ -1,12 +1,27 @@
 import express from 'express';
-import {AddEvent, GetEvents, GetEventById, UpdateEvent, DeleteEvent} from '../controllers/EventController.js';
-import { validateEvent } from '../middleware/authMiddleware.js';
+import {
+    AddEvent,
+    GetEvents,
+    GetEventById,
+    UpdateEvent,
+    DeleteEvent,
+    GetMyEvents,
+    GetEventParticipants
+} from '../controllers/EventController.js';
+import { authenticateToken, validateEvent } from '../middleware/authMiddleware.js';
+import upload from '../middleware/uploadMiddleware.js';
+
 const EventRoutes = express.Router();
 
-EventRoutes.post('/AddEvent', validateEvent, AddEvent);
+// Public routes
 EventRoutes.get('/GetEvents', GetEvents);
 EventRoutes.get('/GetEventById/:id', GetEventById);
-EventRoutes.put('/UpdateEvent/:id', UpdateEvent);
-EventRoutes.delete('/DeleteEvent/:id', DeleteEvent);
+
+// Protected routes (require authentication)
+EventRoutes.get('/GetMyEvents', authenticateToken, GetMyEvents);
+EventRoutes.post('/CreateEvent', authenticateToken, upload.single('image'), validateEvent, AddEvent);
+EventRoutes.put('/UpdateEvent/:id', authenticateToken, upload.single('image'), validateEvent, UpdateEvent);
+EventRoutes.delete('/DeleteEvent/:id', authenticateToken, DeleteEvent);
+EventRoutes.get('/GetEventParticipants/:id', authenticateToken, GetEventParticipants);
 
 export default EventRoutes;
