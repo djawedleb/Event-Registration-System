@@ -16,8 +16,8 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Use absolute path for uploads directory
-const uploadsPath = path.resolve('D:/Backend-Projects/Event-Registration-System/Server/public/uploads');
+// Use relative path for uploads directory
+const uploadsPath = path.join(__dirname, '../public/uploads');
 console.log('Uploads directory absolute path:', uploadsPath);
 
 // Ensure uploads directory exists
@@ -33,10 +33,18 @@ const PORT = process.env.PORT || 5000;
 // Connect to database
 connectDB();
 
+// CORS configuration
+const corsOptions = {
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" },
     crossOriginEmbedderPolicy: false
