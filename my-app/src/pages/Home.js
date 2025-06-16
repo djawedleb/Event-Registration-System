@@ -6,7 +6,7 @@ import '../Styles/Home.css';
 const bgStyle = {
   minHeight: "100vh",
   minWidth: "100vw",
-  backgroundImage: "linear-gradient(120deg, rgba(224,231,255,0.55) 0%, rgba(247,250,252,0.55) 100%), url('/abstract-blur-shopping-mall.jpg')",
+  backgroundImage: "linear-gradient(120deg, rgba(224,231,255,0.55) 0%, rgba(247,250,252,0.55) 100%), url('/abstract-blur-shopping-mall.webp')",
   backgroundPosition: "center",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
