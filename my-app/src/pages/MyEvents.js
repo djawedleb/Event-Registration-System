@@ -33,7 +33,7 @@ const MyEvents = () => {
         price: ''
     });
     const navigate = useNavigate();
-    const SERVER_URL = 'http://localhost:5000'; // Add server URL constant
+    const SERVER_URL = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000'; // Use environment variable
 
     useEffect(() => {
         fetchMyEvents();

@@ -14,7 +14,7 @@ const EventCard = ({ event, onRegister }) => {
     const [isRegistered, setIsRegistered] = useState(false);
     const [registrationId, setRegistrationId] = useState(null);
     const [open, setOpen] = useState(false);
-    const SERVER_URL = 'http://localhost:5000'; // Add server URL constant
+    const SERVER_URL = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000'; // Use environment variable
 
     useEffect(() => {
         checkRegistrationStatus();

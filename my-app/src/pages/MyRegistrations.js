@@ -8,7 +8,7 @@ const MyRegistrations = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [cancelingId, setCancelingId] = useState(null);
-  const SERVER_URL = 'http://localhost:5000';
+  const SERVER_URL = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000';
 
   useEffect(() => {
     fetchRegistrations();

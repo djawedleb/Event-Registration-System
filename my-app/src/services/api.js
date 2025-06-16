@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base URL
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api',  // Your backend URL
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',  // Use environment variable
     // Remove the default Content-Type header to allow browser to set it for FormData
 });
 
